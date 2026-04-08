@@ -1,0 +1,11 @@
+XGBoost.ipynb 最后输出现在会和示例 sample_submission.csv 一致，列顺序固定为：
+
+prediction_id, rating, group_key
+
+我做了两处修改：
+
+ - 推理循环里：如果没有 group_key，就从 prediction_id 解析第二段（月访次）生成，并重排列顺序后再
+env.predict(...)。
+ - 末尾读取 ../outputs/.submission.csv 的展示单元：同样补 group_key 并按三列顺序展示。
+
+group_key 含义：同一患者同一访次（月）的一组预测的分组键（示例里是 prediction_id 第二段）。
